@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>YUZU PEDIA - Top Up Robux</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+}
+.header {
+    background: #22c55e;
+    color: white;
+    padding: 16px;
+    text-align: center;
+}
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+.header p {
+    margin: 5px 0 0;
+    font-size: 13px;
+}
+.container {
+    padding: 15px;
+    max-width: 420px;
+    margin: auto;
+}
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.card h3 {
+    margin: 0 0 10px;
+    color: #16a34a;
+}
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    font-size: 16px;
+    background: #22c55e;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.beli {
+    background: #25D366;
+}
+.result {
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.footer {
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    margin: 20px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>YUZU PEDIA</h1>
+    <p>Top Up Robux Roblox • Fast & Trusted</p>
+</div>
+
+<div class="container">
+
+    <!-- Harga ke Robux -->
+    <div class="card">
+        <h3>Harga ➜ Robux</h3>
+        <input type="number" id="harga" placeholder="Masukkan harga (Rp)">
+        <button onclick="hargaKeRobux()">Hitung</button>
+        <div class="result" id="hasilHarga"></div>
+        <button class="beli" onclick="beliHarga()">Beli Sekarang</button>
+    </div>
+
+    <!-- Robux ke Harga -->
+    <div class="card">
+        <h3>Robux ➜ Harga</h3>
+        <input type="number" id="robux" placeholder="Masukkan jumlah Robux">
+        <button onclick="robuxKeHarga()">Hitung</button>
+        <div class="result" id="hasilRobux"></div>
+        <button class="beli" onclick="beliRobux()">Beli Sekarang</button>
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 YUZU PEDIA • Platform Top Up Game Indonesia
+</div>
+
+<script>
+const hargaPer100 = 14000;
+const nomorWA = "6288276631809";
+
+// Harga ke Robux
+function hargaKeRobux() {
+    let harga = document.getElementById("harga").value;
+    let robux = Math.floor((harga / hargaPer100) * 100);
+    document.getElementById("hasilHarga").innerHTML =
+        robux > 0 ? robux + " Robux" : "";
+}
+
+// Robux ke Harga
+function robuxKeHarga() {
+    let robux = document.getElementById("robux").value;
+    let harga = Math.floor((robux / 100) * hargaPer100);
+    document.getElementById("hasilRobux").innerHTML =
+        harga > 0 ? "Rp " + harga.toLocaleString("id-ID") : "";
+}
+
+// Beli dari harga
+function beliHarga() {
+    let harga = document.getElementById("harga").value;
+    let robux = Math.floor((harga / hargaPer100) * 100);
+
+    if (!harga || robux <= 0) return;
+
+    let pesan =
+`Halo YUZU PEDIA,
+Saya ingin membeli Robux dengan detail:
+
+📦 Produk : Robux Roblox
+💎 Jumlah : ${robux} Robux
+💰 Harga  : Rp ${Number(harga).toLocaleString("id-ID")}
+
+Mohon diproses 🙏`;
+
+    window.open("https://wa.me/" + nomorWA + "?text=" + encodeURIComponent(pesan), "_blank");
+}
+
+// Beli dari robux
+function beliRobux() {
+    let robux = document.getElementById("robux").value;
+    let harga = Math.floor((robux / 100) * hargaPer100);
+
+    if (!robux || harga <= 0) return;
+
+    let pesan =
+`Halo YUZU PEDIA,
+Saya ingin membeli Robux dengan detail:
+
+📦 Produk : Robux Roblox
+💎 Jumlah : ${robux} Robux
+💰 Harga  : Rp ${harga.toLocaleString("id-ID")}
+
+Mohon diproses 🙏`;
+
+    window.open("https://wa.me/" + nomorWA + "?text=" + encodeURIComponent(pesan), "_blank");
+}
+</script>
+
+</body>
+</html>
